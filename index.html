@@ -2,91 +2,142 @@
 <html lang="en">
 <head>
         <meta charset="UTF-8">
-        <title>French Toast Recipe</title>
+        <title>Back To Basics</title>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
-        <style>
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
 
-            #heading {
-                background: darkolivegreen;
-                width: 80px;
-                height: 80px;
-                padding: 10px;
-                border-radius: 80px;
+            .img1 {
                 position: absolute;
-                top: 30px;
-                left: 40px;
+                top: 111px;
+                left: 0;
             }
 
-            .back {
-                color: darkorange;
-                font-family: 'Josefin Slab', serif;
+            .recipe {
+                background-color: white;
+                position: absolute;
+                top: 370px;
+                right: 140px;
+                width: 200px;
+                text-align: center;
+                height: 100px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: darkolivegreen;
+            }
+
+            .under {
+                text-align: center;
+                font-family: 'Roboto Slab', serif;
+                font-size: 20px;
+            }
+
+            .recipe1 {
+                text-align: center;
+                font-family: 'Roboto Slab', serif;
                 font-size: 16px;
-                position: absolute;
-                top: 22px;
-                left: 20px;
+                color: black;
             }
 
-            .to {
-                color: darkgrey;
-                font-family: 'Tangerine', cursive;
-                position: absolute;
-                top: 30px;
-                left: 30px;
+            .bek {
+                float: left;
+                max-width: 26%;
+                padding-left: 5em;
+                margin-top: 700px;
             }
 
-            .basics {
-                color: darkorange;
+            .head2 {
+                font-family: 'Noto Serif', serif;
+                font-size: 35px;
+                text-align: center;
+                text-decoration: underline;
+            }
+
+            .art1 {
+                text-align: left;
                 font-family: 'Josefin Slab', serif;
-                font-size: 25px;
-                position: absolute;
-                top: 60px;
-                left: 20px;
+                font-size: 18px;
             }
 
-            #image1 {
-                position: absolute;
-                top: 205px;
-            }
-
-            #cfs {
-                background: white;
-                width: 500px;
-                height: 71px;
-                position: absolute;
-                top: 640px;
-                left: 15px;
-            }
-
-            #head3 {
-                font-family: 'Bellefair', serif;
-                font-size: 45px;
-                position: absolute;
-                top: 627px;
-                left: 81px;
-
-            }
-
-
-
-
-        </style>
+    </style>
 
 
 </head>
 <body>
+<div>
+    <div id="head"></div>
+
+    <div id="head1">
+        <h1><span class="back">Back</span>
+                <br><span class="to">to</span><br>
+                <span class="basics">Basics</span></h1>
+    </div>
+
+    <div class="menu-wrap">
+        <nav class="menu">
+            <ul class="clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="#">Menu<span class="arrow">&#9660;</span></a>
+                    <ul class="sub-menu">
+                        <li><a href="breakfast.html">Breakfast</a></li>
+                        <li><a href="lunch.html">Lunch</a></li>
+                        <li><a href="dinner.html">Dinner</a></li>
+                    </ul>
+                </li>
+                <li><a href="foodguesser.html">Food Guesser</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <img class="img1" src="https://static01.nyt.com/images/2017/09/26/dining/26COOKING-CHICKENCHICKPEAS/26COOKING-CHICKENCHICKPEAS-videoSixteenByNineJumbo1600.jpg"
+         alt="Classic French Toast" style="width: 100%;height: 80%;">
 
 
-    <h1 id="heading"><span class="back">Back</span>
-            <br><span class="to">to</span><br>
-            <span class="basics">Basics</span></h1>
+    <div class="recipe">
+        <a href="index2.html" class="recipe1" ><span class="under">Recipe of The<br> Week</span> <br>Seared Chicken Breast with Garbanzo Beans</a>
+    </div>
 
 
-    <img id="image1" src="https://static01.nyt.com/images/2017/05/03/dining/03FRENCHTOAST2/03FRENCHTOAST2-videoSixteenByNineJumbo1600.jpg" alt="Delicious French Toast"
-         width="900">
+    <div class="bek">
+        <h2 class="head2">Breakfast</h2>
+        <article class="art1">
+            <p>Some days it's tough to know exactly what to make yet it is always important to start the day of with some energy.
+                Whether it is an early morning and you have no time to cook or you are simply feeling lazy we got you.
+                With simple tasty recipes to planned out meals around the table for the whole family we have it all. These recipes have something to offer everyone.</p>
+        </article>
+    </div>
 
-    <div id="cfs"></div>
+    <div class="bek">
+        <h2 class="head2">Lunch</h2>
+        <article class="art1">
+            <p>Lunch is always an escape from whatever the day has to offer.
+                An opportunity to have good food, hang out with friends and anything else you can think of.
+                Eating a not only healthy but tasty lunch can bring a new joy to life not to mention keeping you healthy.
+                Well you have found your guide to a good lunch and its all at your finger tips.</p>
+        </article>
+    </div>
 
-    <h3 id="head3">Classic French Toast</h3>
+    <div class="bek">
+        <h2 class="head2">Dinner</h2>
+        <article class="art1">
+            <p>Dinner is an important time in the day for many cultures.
+                A time when family can come together to talk.
+                Good food around the table can enhance the experience and help to expand you as a person.
+                Not only eating but making food gives you a whole new skill set and can even help you learn about another culture.
+            </p>
+        </article>
+    </div>
 
+
+
+
+
+
+</div>
+</body>
+</html>

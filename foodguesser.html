@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <titl>Food Guesser</titl></title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .guesser {
+            margin-top: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="head"></div>
+
+<div id="head1">
+    <h1><span class="back">Back</span>
+        <br><span class="to">to</span><br>
+        <span class="basics">Basics</span></h1>
+</div>
+
+<div class="menu-wrap">
+    <nav class="menu">
+        <ul class="clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>
+                <a href="#">Menu<span class="arrow">&#9660;</span></a>
+                <ul class="sub-menu">
+                    <li><a href="breakfast.html">Breakfast</a></li>
+                    <li><a href="lunch.html">Lunch</a></li>
+                    <li><a href="dinner.html">Dinner</a></li>
+                </ul>
+            </li>
+            <li><a href="foodguesser.html">Food Guesser</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="guesser" id="guess_display"></div>
+
+
+<form id="guess_form">
+    <label>Guess a letter:
+        <input type="text" id="guess_input">
+    </label>
+</form>
+
+<div id="guess_status"></div>
+
+<script>
+    // Store DOM elements in variables
+    var guessForm = document.getElementById("guess_form");
+    var guessDisplay = document.getElementById("guess_display");
+    var guessInput = document.getElementById("guess_input");
+    var guessStatus = document.getElementById("guess_status");
+
+    // Initialize game state variables
+    var secretWord = "banana";
+    var guessedWord = [];
+    var guessedLetters = [];
+    for (var i = 0; i < secretWord.length; i++) {
+        guessedWord[i] = "_";
+    }
+
+    // Returns true if its a correct guess -
+    //  if the letter is anywhere in the word
+    // Also updates guessedWord and guessedLetters
+    var checkLetterGuess = function(letter) {
+        var found = false
+        for (var i = 0; i < secretWord.length; i++) {
+            if(letter === secretWord[i])
+            {
+                guessedWord[i]= letter;
+                console.log(guessedWord);
+                found = true;
+            }
+        }return found;
+    };
+
+    // Returns true if they guessed the whole word
+    var hasWon = function() {
+        for (var i = 0; i < secretWord.length; i++) {
+            if (guessedWord[i] !== secretWord[i])
+            {
+                return false;
+                console.log("hello");
+            }
+
+        }return true;
+        console.log("hello2222");
+    };
+
+
+    var displayGuessedWord = function() {
+        guessDisplay.innerHTML = guessedWord.join(" ");
+    };
+
+
+    guessForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var foundLetter = checkLetterGuess(guessInput.value);
+        if (foundLetter) {
+            guessStatus.innerHTML = "Yay you found one!";
+        } else {
+            guessStatus.innerHTML = "this is wrong";
+        }
+        if (hasWon()) {
+            guessStatus.innerHTML += "WOOO WINNER WINNER!";
+        }
+        displayGuessedWord();
+        guessInput.value = "";
+    });
+    displayGuessedWord();
+
+
+</script>
+
+</body>
+</html>
