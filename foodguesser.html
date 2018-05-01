@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <titl>Food Guesser</titl></title>
+    <title>Games</title>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
@@ -10,9 +10,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        .guesser {
+        #guess_display {
             margin-top: 300px;
         }
+        .httt {
+            margin-top: 200px;
+        }
+
     </style>
 </head>
 <body>
@@ -42,25 +46,26 @@
     </nav>
 </div>
 
-<div class="guesser" id="guess_display"></div>
+<h2 class="httt"><a href="https://www.khanacademy.org/computer-programming/roan-tictactoe/5618130951897088">Roan TicTacToe</a><script src="https://www.khanacademy.org/computer-programming/roan-tictactoe/5618130951897088/embed.js?editor=yes&buttons=yes&author=yes&embed=yes"></script><p>Made using: <a href="http://www.khanacademy.org/computer-programming">Khan Academy Computer Science</a></p></h2>
 
 
+
+
+
+<div id="guess_display"></div>
 <form id="guess_form">
     <label>Guess a letter:
         <input type="text" id="guess_input">
     </label>
 </form>
-
 <div id="guess_status"></div>
 
 <script>
-    // Store DOM elements in variables
     var guessForm = document.getElementById("guess_form");
     var guessDisplay = document.getElementById("guess_display");
     var guessInput = document.getElementById("guess_input");
     var guessStatus = document.getElementById("guess_status");
 
-    // Initialize game state variables
     var secretWord = "banana";
     var guessedWord = [];
     var guessedLetters = [];
@@ -68,11 +73,8 @@
         guessedWord[i] = "_";
     }
 
-    // Returns true if its a correct guess -
-    //  if the letter is anywhere in the word
-    // Also updates guessedWord and guessedLetters
     var checkLetterGuess = function(letter) {
-        var found = false
+        var found = false;
         for (var i = 0; i < secretWord.length; i++) {
             if(letter === secretWord[i])
             {
@@ -83,7 +85,6 @@
         }return found;
     };
 
-    // Returns true if they guessed the whole word
     var hasWon = function() {
         for (var i = 0; i < secretWord.length; i++) {
             if (guessedWord[i] !== secretWord[i])
@@ -96,11 +97,9 @@
         console.log("hello2222");
     };
 
-
     var displayGuessedWord = function() {
         guessDisplay.innerHTML = guessedWord.join(" ");
     };
-
 
     guessForm.addEventListener("submit", function(event) {
         event.preventDefault();
