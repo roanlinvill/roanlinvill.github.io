@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aquariums and Games</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+
+        #map {
+            height: 90%;
+        }
+
+        #mapwrapper {
+            width:  600px;
+            height: 600px;
+            opacity: 0.9;
+            font-family: Times, serif;
+            font-size: 10px;
+            text-align: center;
+            background-color: white;
+            position: absolute;
+            top: 10%;
+            left: 52%;
+            border: 5px solid black;
+        }
+
+        #quiz {
+            width:  600px;
+            height: 600px;
+            opacity: 0.9;
+            font-family: Times, serif;
+            font-size: 20px;
+            text-align: center;
+            background-color: white;
+            position: absolute;
+            top: 10%;
+            right: 52%;
+            border: 5px solid black;
+
+        }
+
+
+        #img1 {
+            width: 35%;
+            height: 45%;
+            border: 5px solid black;
+            float: left;
+            margin-top: 10%;
+            margin-left: 10%;
+        }
+
+        .bigh {
+            border-bottom: 5px solid black;
+            margin-bottom: 0px;
+            font-size: 28px;
+        }
+
+        #buttons {
+            margin-top: 8%;
+            margin-left: 10%;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<img src="https://cdn.pixabay.com/photo/2017/08/05/08/54/coral-2582513_960_720.jpg" alt="Coral" style="width:1500px;height:800px;">
+
+
+<div id="mapwrapper">
+    <h1 class="bigh">Aquariums Near You</h1>
+    <div id="map"></div>
+</div>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Perfect Tank</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="fishtank.html">Home</a></li>
+                    <li><a href="parameters.html">Parameters</a></li>
+                    <li><a href="maps.html">Aquariums and Games</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="quiz">
+<h1 class="bigh">Name These Animals</h1>
+
+
+
+
+
+<form id="quiz-form">
+
+    <fieldset>
+        <img id="img1" src="https://www.aquariumtiptank.com/wp-content/uploads/2013/01/04-Coral-Beauty-side.jpg">
+        <br>
+        <div id="buttons">
+        <label><input name="question1" value="Striped Angel" type="radio">Striped Angel</label><br>
+        <label><input name="question1" value="Coral Beauty" type="radio">Coral Beauty</label><br>
+        <label><input name="question1" value="Purple Tang" type="radio">Purple Tang</label><br>
+        </div>
+    </fieldset>
+
+    <div id="results"></div>
+
+    <fieldset>
+        <img id="img1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Euphyllia_divisa.jpg/1200px-Euphyllia_divisa.jpg">
+        <br>
+        <div id="buttons">
+        <label><input name="questiona" value="Frogspawn Coral" type="radio">Frogspawn</label><br>
+        <label><input name="questiona" value="Brain Coral" type="radio">Brain Coral</label><br>
+        <label><input name="questiona" value="Staghorn Coral" type="radio">Staghorn Coral</label><br>
+        </div>
+    </fieldset>
+
+    <div id="buttons">
+    <button type="submit">Check me</button>
+</form>
+
+<div id="results2"></div>
+
+<div id="score"></div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script>
+    function initMap() {
+        var mapDiv = document.getElementById('map');
+        var opts = {
+            zoom: 9,
+            center: {lat:37.7454532, lng: -122.2389383},
+            gestureHandling: 'greedy',
+            mapTypeId:'terrain'
+        };
+        var map = new google.maps.Map(mapDiv, opts);
+
+        var marker1 = new google.maps.Marker({
+            position: {lat:37.8916669, lng:
+                -122.2993649},
+            map: map
+        });
+
+        var info1 = new google.maps.InfoWindow({
+            content: '<h4>Albany Aquarium</h4><a target="_blank" href="https://http://www.albanyaquarium.com">Albany Aquarium Website</a>'
+        });
+        marker1.addListener('click', function() {
+            info1.open(map, marker1);
+        });
+        var marker2 = new google.maps.Marker({
+            position: {lat:37.8086691, lng:
+                -122.4095821},
+            map: map
+        });
+
+        var info2 = new google.maps.InfoWindow({
+            content: '<h4>Aquarium of the Bay</h4><a target="_blank" href="https://bayecotarium.org/about/aquarium-of-the-bay/">Aquarium of the Bay Website</a>'
+        });
+        marker2.addListener('click', function() {
+            info2.open(map, marker2);
+        });
+        var marker3 = new google.maps.Marker({
+            position: {lat:37.7774023, lng:
+                -122.46},
+            map: map
+        });
+
+        var info3 = new google.maps.InfoWindow({
+            content: '<h4>Lucky Ocean and Aquarium</h4><a>Phone Number: (415) 668-3676</a>'
+        });
+        marker3.addListener('click', function() {
+            info3.open(map, marker3);
+        });
+
+        var marker4 = new google.maps.Marker({
+            position: {lat:37.7702394, lng: -122.466532},
+            map: map
+        });
+
+        var info4 = new google.maps.InfoWindow({
+            content: '<h4>Steinhart Aquarium</h4><a target="_blank" href="https://www.calacademy.org/exhibits/steinhart-aquarium">Steinhart Aquarium Website</a>'
+        });
+        marker4.addListener('click', function() {
+            info4.open(map, marker4);
+        });
+
+        var marker5 = new google.maps.Marker({
+            position: {lat:37.9216578, lng:  -122.3159259},
+            map: map
+        });
+
+        var info5 = new google.maps.InfoWindow({
+            content: '<h4>Tropical Fish World</h4><a>Phone Number: (510) 232-0930</a>'
+        });
+        marker5.addListener('click', function() {
+            info5.open(map, marker5);
+        });
+
+        var marker6 = new google.maps.Marker({
+            position: {lat:37.7819621, lng:  -122.2406782},
+            map: map
+        });
+
+        var info6 = new google.maps.InfoWindow({
+            content: '<h4>Bay Bridge Aquarium</h4><a target="_blank" href="https://www.baybridgeaquarium.com">Bay Bridge Aquarium Website</a>'
+        });
+        marker6.addListener('click', function() {
+            info6.open(map, marker6);
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrSAqX0DuI-ZA3xrvnSZ_atK5GvXFelQQ&callback=initMap">
+</script>
+
+
+
+
+
+
+<script>
+    var score;
+    var quizForm = document.getElementById("quiz-form");
+    quizForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        score = 0;
+        var resultsDiv = document.getElementById("results");
+
+        var answer1 = document.querySelector('[name="question1"]:checked');
+        if (!answer1) {
+        } else {
+
+            if (answer1.value === "Coral Beauty") {
+                score+=1;
+                document.getElementById("score").innerHTML=percentageCal();
+            } else {
+                if (score>0){
+                    score -= 1;
+                }
+                document.getElementById("score").innerHTML=percentageCal();
+
+            }
+        }
+        var resultsDiv = document.getElementById("results2");
+
+        var answer2 = document.querySelector('[name="questiona"]:checked');
+        if (!answer2) {
+        } else {
+            // answer1.value is the value attribute of the checked <input>
+            if (answer2.value === "Frogspawn Coral") {
+                score+=1;
+                document.getElementById("score").innerHTML=percentageCal();
+            } else {
+                document.getElementById("score").innerHTML= percentageCal();
+
+            }
+        }
+    });
+    function percentageCal() {
+
+        return score/2*100+"%";
+    }
+
+
+</script>
+
+
+
+
+</body>
+</html>

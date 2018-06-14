@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salinity</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        .form-horizontal {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .h1{
+            font-size: 20px;
+            margin-left: 150px;
+            margin-top: 80px;
+        }
+
+
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Perfect Tank</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="fishtank.html">Home</a></li>
+                    <li class="active"><a href="parameters.html">Parameters</a></li>
+                    <li><a href="maps.html">Aquariums</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="h1">Salinity Data Collector</h1>
+
+<form id="tempform" class="form-horizontal">
+    <div class="form-group">
+        <label for="date" class="col-sm-2 control-label">Date</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="date" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="number" class="col-sm-2 control-label">Measurement</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="number" placeholder="value">
+            <button class="btn btn-default" type="submit">Graph</button>
+            <button class="btn btn-default" type="button" id="getRidData">Reset</button>
+        </div>
+    </div>
+</form>
+
+<div id="datatemp"></div>
+
+<div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+<script src="https://cdn.jsdelivr.net/npm/alasql@0.4"></script>
+<script>
+    function setupForm() {
+        var dataForm = document.getElementById("tempform");
+        dataForm.addEventListener("submit", function(evt) {
+            evt.preventDefault();
+            var name = document.getElementById("date").value;
+            var num = document.getElementById("number").value;
+            insertData(name, num);
+            showData();
+        });
+        var reset = document.getElementById("getRidData");
+        reset.addEventListener("click", function() {
+            clearDataBase();
+            showData();
+        })
+    }
+
+    function showData() {
+        var results = getData();
+        var resultsDiv = document.getElementById('datatemp');
+        var dates = [];
+        var temps = [];
+        resultsDiv.innerHTML = "";
+        for (var i = 0; i < results.length; i++) {
+            dates.push(results[i].name);
+            temps.push(results[i].num);
+
+        }
+        var trace1 = {
+            x: dates,
+            y: temps,
+            type: 'scatter'
+        };
+        var data = [trace1];
+        Plotly.newPlot('myDiv', data);
+    }
+
+    function clearDataBase() {
+        alasql('DELETE from UserData where 1');
+    }
+
+    function setupDatabase() {
+        alasql('CREATE localStorage DATABASE IF NOT EXISTS WebsiteData');
+        alasql('ATTACH localStorage DATABASE WebsiteData');
+        alasql('USE WebsiteData');
+        alasql('CREATE TABLE IF NOT EXISTS UserData (date string, num number)');
+    }
+
+    function insertData(name, num) {
+        alasql('INSERT INTO UserData(name, num) VALUES(?, ?)', [name, num]);
+        alasql('COMMIT TRANSACTION');
+    }
+
+    function getData() {
+        return alasql('SELECT * FROM UserData');
+
+    }
+
+
+    setupDatabase();
+    setupForm();
+    showData();
+
+</script>
+
+</body>
+</html>
